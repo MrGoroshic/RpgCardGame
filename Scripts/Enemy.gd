@@ -5,6 +5,7 @@ var enemy_action = false
 func enemy_move():
 	if enemy_action:
 		$"../DeckEnemy".draw_card_enemy()
+		enemy_action = false
 
 
 

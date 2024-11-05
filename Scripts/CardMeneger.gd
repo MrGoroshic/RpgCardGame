@@ -42,6 +42,8 @@ func finish_drag():
 		card_slot_found.card_in_slot.push_back(card_deing_dragged) 
 		$"../CardSlotPlayer".card_value_in_slot += card_deing_dragged.card_value
 		card_slot_found.update_hand_position()
+		$"../Enemy".enemy_action = true
+		$"../Enemy".enemy_move()
 	else:
 		player_hand_reference.add_card_to_hand(card_deing_dragged, DEFAULT_CARD_MOVE_SPEED)
 	card_deing_dragged = null

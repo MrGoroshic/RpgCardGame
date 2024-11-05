@@ -40,7 +40,7 @@ func add_card_enemy(card_for_add):
 	if card_slot_found and $"../CardSlotEnemy".enemy_card_in_slot.size() < 6:
 		card_for_add.position = card_slot_found.position
 		card_for_add.get_node("Area2D/CollisionShape2D").disabled = true
-		card_slot_found.enemy_card_in_slot.push_back(card_for_add) 
+		$"../CardSlotEnemy".enemy_card_in_slot.push_back(card_for_add) 
 		$"../CardSlotEnemy".enemy_card_value_in_slot += card_for_add.card_value
 	else:
 		$"../Enemy".enemy_action = false
