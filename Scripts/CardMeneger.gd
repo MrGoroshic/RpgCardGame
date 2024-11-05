@@ -8,6 +8,8 @@ var screen_size
 var card_deing_dragged
 var is_hovering_on_card
 var player_hand_reference
+var card_scale_hovered = 0.65
+var card_scale_hovered_off = 0.6
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,18 +28,20 @@ func _process(delta):
 
 func start_drag(card):
 	card_deing_dragged = card
-	card.scale = Vector2(0.8, 0.8)
+	card.scale = Vector2(card_scale_hovered_off, card_scale_hovered_off)
 
 
 func finish_drag():
-	card_deing_dragged.scale = Vector2(0.85, 0.85)
+	card_deing_dragged.scale = Vector2(card_scale_hovered, card_scale_hovered)
 	var card_slot_found = raycast_check_for_card_slot()
-	if card_slot_found and not card_slot_found.card_in_slot:
+	if card_slot_found and $"../CardSlotPlayer".card_in_slot.size() < 6:
 		player_hand_reference.remove_card_from_hand(card_deing_dragged)
 		# Card dropped in empty card slot
 		card_deing_dragged.position = card_slot_found.position
 		card_deing_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-		card_slot_found.card_in_slot = true
+		card_slot_found.card_in_slot.push_back(card_deing_dragged) 
+		$"../CardSlotPlayer".card_value_in_slot += card_deing_dragged.card_value
+		card_slot_found.update_hand_position()
 	else:
 		player_hand_reference.add_card_to_hand(card_deing_dragged, DEFAULT_CARD_MOVE_SPEED)
 	card_deing_dragged = null
@@ -54,9 +58,9 @@ func on_left_click_released():
 
 
 func on_hovered_over_card(card):
-	if !is_hovering_on_card:
+	if !card_deing_dragged:
 		is_hovering_on_card = true
-	highlight_card(card, true)
+		highlight_card(card, true)
 
 
 func on_hovered_off_card(card):
@@ -72,10 +76,10 @@ func on_hovered_off_card(card):
 
 func highlight_card(card, hovered):
 	if hovered:
-		card.scale = Vector2(0.85, 0.85)
+		card.scale = Vector2(card_scale_hovered, card_scale_hovered)
 		card.z_index = 2
 	else:
-		card.scale = Vector2(0.8, 0.8)
+		card.scale = Vector2(card_scale_hovered_off, card_scale_hovered_off)
 		card.z_index = 1
 
 

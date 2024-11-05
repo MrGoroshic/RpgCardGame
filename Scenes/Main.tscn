@@ -1,53 +1,50 @@
-[gd_scene load_steps=8 format=3 uid="uid://8d5osxfh1qfx"]
+[gd_scene load_steps=9 format=3 uid="uid://8d5osxfh1qfx"]
 
 [ext_resource type="Script" path="res://Scripts/CardMeneger.gd" id="1_t8l5h"]
 [ext_resource type="PackedScene" uid="uid://bq4qn2tbyi6kc" path="res://Scenes/CardSlot.tscn" id="2_drfvi"]
 [ext_resource type="Script" path="res://Scripts/PlayerHand.gd" id="3_wxhdf"]
-[ext_resource type="Script" path="res://Scenes/Deck.gd" id="4_bvc7v"]
-[ext_resource type="Texture2D" uid="uid://n0qcvcdw3qrm" path="res://Assets/Deck.png" id="5_1kruo"]
-[ext_resource type="Script" path="res://Scenes/InputManager.gd" id="6_s0x2c"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sng5"]
-size = Vector2(180, 278)
+[ext_resource type="PackedScene" uid="uid://chac6g782ad5u" path="res://Scenes/CardSlotEnemy.tscn" id="4_oc5ik"]
+[ext_resource type="PackedScene" uid="uid://w3it2jpituop" path="res://Scenes/Deck.tscn" id="4_yl6m7"]
+[ext_resource type="PackedScene" uid="uid://flel76qdbarn" path="res://Scenes/DeckEnemy.tscn" id="6_58uh6"]
+[ext_resource type="Script" path="res://Scripts/InputManager.gd" id="6_s0x2c"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="7_kcrmo"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("3_wxhdf")
 
 [node name="CardMeneger" type="Node2D" parent="."]
 script = ExtResource("1_t8l5h")
 
-[node name="CardSlot" parent="." instance=ExtResource("2_drfvi")]
-position = Vector2(137, 171)
+[node name="CardSlotPlayer" parent="." instance=ExtResource("2_drfvi")]
+position = Vector2(566, 339)
 
-[node name="CardSlot2" parent="." instance=ExtResource("2_drfvi")]
-position = Vector2(1006, 170)
+[node name="CardSlotEnemy" parent="." instance=ExtResource("4_oc5ik")]
+position = Vector2(566, 104)
+scale = Vector2(0.6, 0.6)
 
 [node name="PlayerHand" type="Node2D" parent="."]
 script = ExtResource("3_wxhdf")
 
-[node name="Deck" type="Node2D" parent="."]
-scale = Vector2(0.8, 0.8)
-script = ExtResource("4_bvc7v")
+[node name="DeckPlayer" parent="." instance=ExtResource("4_yl6m7")]
+position = Vector2(-103, -111)
 
-[node name="Sprite2D" type="Sprite2D" parent="Deck"]
-z_index = -2
-texture = ExtResource("5_1kruo")
-
-[node name="Area2D" type="Area2D" parent="Deck"]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck/Area2D"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_6sng5")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Deck"]
-z_index = -2
-offset_left = 56.25
-offset_top = -137.5
-offset_right = 96.25
-offset_bottom = -97.5
-scale = Vector2(2, 2)
-text = "0"
+[node name="DeckEnemy" parent="." instance=ExtResource("6_58uh6")]
+position = Vector2(1040, 8)
+rotation = 3.14159
+scale = Vector2(0.6, 0.6)
 
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("6_s0x2c")
+
+[node name="Enemy" type="Node2D" parent="."]
+script = ExtResource("7_kcrmo")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 496.0
+offset_top = 209.0
+offset_right = 611.0
+offset_bottom = 274.0
+scale = Vector2(2, 2)
+text = "YOU WIN"

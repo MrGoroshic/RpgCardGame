@@ -1,23 +1,34 @@
 [gd_scene load_steps=4 format=3 uid="uid://bq4qn2tbyi6kc"]
 
-[ext_resource type="Texture2D" uid="uid://ytfjhdpm1dwc" path="res://Assets/CardSlot.png" id="1_bhic1"]
 [ext_resource type="Script" path="res://Scripts/CardSlot.gd" id="1_qtq8f"]
+[ext_resource type="Texture2D" uid="uid://crcyno74n7fr6" path="res://Assets/CardSlotPlayer.png" id="2_x8h7i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0neqn"]
-size = Vector2(180, 277.5)
+size = Vector2(1186.67, 277.5)
 
 [node name="CardSlot" type="Node2D"]
-position = Vector2(-3, -5)
-scale = Vector2(0.8, 0.8)
+position = Vector2(-2, -1)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_qtq8f")
 
 [node name="CardSlotImage" type="Sprite2D" parent="."]
-texture = ExtResource("1_bhic1")
+texture = ExtResource("2_x8h7i")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1.12057e-05, -1.24998)
+position = Vector2(-1.09673e-05, -1.24998)
 shape = SubResource("RectangleShape2D_0neqn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+light_mask = 2
+visibility_layer = 2
+offset_left = -26.6667
+offset_top = 131.667
+offset_right = -2.66667
+offset_bottom = 154.667
+scale = Vector2(3, 3)
+text = "0"
+text_direction = 1

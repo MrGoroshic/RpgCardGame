@@ -6,6 +6,7 @@ signal hovered_off
 var starting_hand_position
 var card_position_x
 var card_position_y
+var card_value = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +15,7 @@ func _ready() -> void:
 	card_position_y = get_viewport().size.y - 120
 	position.x = card_position_x
 	position.y = card_position_y
+	$RichTextLabel.text = str(card_value)
 	get_parent().connect_card_signal(self)
 
 
