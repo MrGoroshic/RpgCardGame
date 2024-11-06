@@ -39,7 +39,7 @@ script = ExtResource("6_s0x2c")
 [node name="Enemy" type="Node2D" parent="."]
 script = ExtResource("7_kcrmo")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="win" type="RichTextLabel" parent="."]
 visible = false
 texture_filter = 1
 offset_left = 496.0
@@ -48,3 +48,23 @@ offset_right = 611.0
 offset_bottom = 274.0
 scale = Vector2(2, 2)
 text = "YOU WIN"
+
+[node name="lose" type="RichTextLabel" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 495.0
+offset_top = 209.0
+offset_right = 610.0
+offset_bottom = 274.0
+scale = Vector2(2, 2)
+text = "YOU LOSE"
+
+[node name="draw" type="RichTextLabel" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 507.0
+offset_top = 209.0
+offset_right = 622.0
+offset_bottom = 274.0
+scale = Vector2(2, 2)
+text = "DRAW"

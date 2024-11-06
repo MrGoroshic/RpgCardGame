@@ -6,6 +6,13 @@ func enemy_move():
 	if enemy_action:
 		$"../DeckEnemy".draw_card_enemy()
 		enemy_action = false
+	if $"../CardSlotEnemy".enemy_card_in_slot.size() == 6:
+		if $"../CardSlotPlayer".card_value_in_slot == $"../CardSlotEnemy".enemy_card_value_in_slot:
+			$"../draw".visible = true
+		elif $"../CardSlotPlayer".card_value_in_slot > $"../CardSlotEnemy".enemy_card_value_in_slot:
+			$"../win".visible = true
+		elif $"../CardSlotPlayer".card_value_in_slot < $"../CardSlotEnemy".enemy_card_value_in_slot:
+			$"../lose".visible = true 
 
 
 

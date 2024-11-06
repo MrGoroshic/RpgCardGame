@@ -20,6 +20,7 @@ func update_hand_position():
 		var card = enemy_card_in_slot[i]
 		card.starting_hand_position = new_position
 		animate_card_to_position(card, new_position, DEFAULT_CARD_MOVE_SPEED)
+	$RichTextLabel.text = str(enemy_card_value_in_slot)
 		
 func calculate_card_position(index):
 	var total_width = (enemy_card_in_slot.size() - 1) * CARD_WIDTH

@@ -1,11 +1,15 @@
 extends Node2D
 
-const CARD_SCENE_PATH = "res://Scenes/Card.tscn"
+const CARD_VETERAN_SCENE_PATH = "res://Scenes/Card.tscn"
+const CARD_ARCHER_SCENE_PATH = "res://Scenes/CardArcher.tscn"
+const CARD_KNIGHT_SCENE_PATH = "res://Scenes/CardKnight.tscn"
 const CARD_DRAW_SPEED = 0.4
 
-var player_deck = [1, 2, 3 ,4 , 5, 6, 7, 8, 9, 10]
+var player_deck = [1, 2, 3 ,4, 5, 6, 7, 8, 9, 10]
 var deck_position_x
 var deck_position_y
+var scene_paths = [CARD_VETERAN_SCENE_PATH, CARD_ARCHER_SCENE_PATH, CARD_KNIGHT_SCENE_PATH]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,7 +32,8 @@ func draw_card():
 		$RichTextLabel.visible = false
 	
 	$RichTextLabel.text = str(player_deck.size())
-	var card_scene = preload(CARD_SCENE_PATH)
+	var random_index = randi() % scene_paths.size()
+	var card_scene = load(scene_paths[random_index])
 	var new_card = card_scene.instantiate()
 	$"../CardMeneger".add_child(new_card)
 	new_card.name = "Card"

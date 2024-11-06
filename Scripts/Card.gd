@@ -6,7 +6,7 @@ signal hovered_off
 var starting_hand_position
 var card_position_x
 var card_position_y
-var card_value = 5
+@export var card_value = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

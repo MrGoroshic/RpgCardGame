@@ -1,11 +1,14 @@
 extends Node2D
 
-const CARD_SCENE_PATH = "res://Scenes/Card.tscn"
+const CARD_VETERAN_SCENE_PATH = "res://Scenes/Card.tscn"
+const CARD_ARCHER_SCENE_PATH = "res://Scenes/CardArcher.tscn"
+const CARD_KNIGHT_SCENE_PATH = "res://Scenes/CardKnight.tscn"
 const CARD_DRAW_SPEED = 0.4
 
 var enemy_deck = [1, 2, 3 ,4 , 5, 6, 7, 8, 9, 10]
 var deck_position_x
 var deck_position_y
+var scene_paths = [CARD_VETERAN_SCENE_PATH, CARD_ARCHER_SCENE_PATH, CARD_KNIGHT_SCENE_PATH]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,7 +31,8 @@ func draw_card_enemy():
 		$RichTextLabel.visible = false
 	
 	$RichTextLabel.text = str(enemy_deck.size())
-	var card_scene = preload(CARD_SCENE_PATH)
+	var random_index = randi() % scene_paths.size()
+	var card_scene = load(scene_paths[random_index])
 	var new_card = card_scene.instantiate()
 	$"../CardMeneger".add_child(new_card)
 	new_card.name = "Card"
@@ -36,11 +40,13 @@ func draw_card_enemy():
 
 
 func add_card_enemy(card_for_add):
-	var card_slot_found = $"../CardMeneger".raycast_check_for_card_slot()
-	if card_slot_found and $"../CardSlotEnemy".enemy_card_in_slot.size() < 6:
-		card_for_add.position = card_slot_found.position
+	#var card_slot_found = $"../CardMeneger".raycast_check_for_card_slot()
+	#if card_slot_found and $"../CardSlotEnemy".enemy_card_in_slot.size() < 6:
+	if $"../CardSlotEnemy".enemy_card_in_slot.size() < 6:
+		card_for_add.position = $"../DeckEnemy".position
 		card_for_add.get_node("Area2D/CollisionShape2D").disabled = true
 		$"../CardSlotEnemy".enemy_card_in_slot.push_back(card_for_add) 
 		$"../CardSlotEnemy".enemy_card_value_in_slot += card_for_add.card_value
+		$"../CardSlotEnemy".update_hand_position()
 	else:
 		$"../Enemy".enemy_action = false

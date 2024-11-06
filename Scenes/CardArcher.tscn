@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://jfwlkaym7kns"]
+
+[ext_resource type="PackedScene" uid="uid://dlmkrnqgw0y26" path="res://Scenes/Card.tscn" id="1_rxxpc"]
+[ext_resource type="Texture2D" uid="uid://dr3ose7rfbmdn" path="res://Assets/CardArcher.png" id="2_s2ixs"]
+
+[node name="CardArcher" instance=ExtResource("1_rxxpc")]
+card_value = 3
+
+[node name="CardImage" parent="." index="0"]
+texture = ExtResource("2_s2ixs")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(1.66666, 0.833328)

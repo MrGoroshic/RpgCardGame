@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctas1hodo7655"]
+
+[ext_resource type="PackedScene" uid="uid://dlmkrnqgw0y26" path="res://Scenes/Card.tscn" id="1_8og1s"]
+[ext_resource type="Texture2D" uid="uid://byytfrfeddlnw" path="res://Assets/CardKnight.png" id="2_jupjv"]
+
+[node name="CardKnight" instance=ExtResource("1_8og1s")]
+card_value = 4
+
+[node name="CardImage" parent="." index="0"]
+texture = ExtResource("2_jupjv")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-1.66658, -7.54992e-06)
